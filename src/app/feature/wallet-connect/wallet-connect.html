@@ -1,0 +1,52 @@
+<section class="wallet-connect">
+  <h2>Billetera cripto</h2>
+  <p class="wallet-connect__subtitle">
+    Conéctate con Pali Wallet para leer tu dirección y tu saldo, y prueba el cambio
+    entre las testnets Ethereum Sepolia y Ethereum Hoodi.
+  </p>
+
+  @if (!isPaliInstalled) {
+    <app-alert
+      type="info"
+      message="No se detectó la extensión de Pali Wallet en este navegador. Instálala para continuar."
+    ></app-alert>
+  }
+
+  @if (error()) {
+    <app-alert type="error" [message]="error()"></app-alert>
+  }
+
+  <div class="wallet-connect__actions">
+    @if (!isConnected()) {
+      <app-button
+        label="Conectar con Pali Wallet"
+        variant="primary"
+        [loading]="isLoading()"
+        [disabled]="!isPaliInstalled"
+        (clicked)="connect()"
+      ></app-button>
+    } @else {
+      <app-button
+        label="Desconectar"
+        variant="danger"
+        [loading]="isLoading()"
+        (clicked)="disconnect()"
+      ></app-button>
+    }
+  </div>
+
+  <div class="wallet-connect__networks">
+    <h3>Red activa</h3>
+    <div class="wallet-connect__network-list">
+      @for (network of networks; track network.key) {
+        <app-button
+          [label]="network.chainIdHex === currentChainIdHex() ? '✓ ' + network.chainName : 'Cambiar a ' + network.chainName"
+          [variant]="network.chainIdHex === currentChainIdHex() ? 'primary' : 'secondary'"
+          [disabled]="!isPaliInstalled || network.chainIdHex === currentChainIdHex()"
+          [loading]="isLoading()"
+          (clicked)="switchNetwork(network.key)"
+        ></app-button>
+      }
+    </div>
+  </div>
+</section>

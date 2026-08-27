@@ -1,0 +1,111 @@
+<div class="store">
+  <section class="hero">
+    <div class="hero__copy">
+      <span class="hero__eyebrow">Mercado Andino · Cañete</span>
+      <h1 class="hero__title">Tu canasta de siempre,<br />con un checkout Web3.</h1>
+      <p class="hero__subtitle">
+        Explora nuestros productos frescos y conoce cómo una dApp puede leer tu
+        billetera para preparar el pago del futuro — sin salir de la tienda.
+      </p>
+      <div class="hero__actions">
+        <button type="button" class="hero__cta" (click)="scrollToCheckout()">
+          🔗 Conectar billetera
+        </button>
+        <a class="hero__link" href="#catalogo">Ver catálogo ↓</a>
+      </div>
+    </div>
+    <div class="hero__stamp" aria-hidden="true">
+      <span>100%</span>
+      <small>fresco</small>
+    </div>
+  </section>
+
+  <nav class="categories" aria-label="Categorías de productos">
+    @for (category of categories; track category.key) {
+      <button
+        type="button"
+        class="categories__chip"
+        [class.categories__chip--active]="activeCategory() === category.key"
+        (click)="selectCategory(category.key)"
+      >
+        <span>{{ category.emoji }}</span>
+        {{ category.label }}
+      </button>
+    }
+  </nav>
+
+  <section id="catalogo" class="catalog">
+    <div class="catalog__grid">
+      @for (product of filteredProducts(); track product.id) {
+        <article class="product-card">
+          @if (product.tag) {
+            <span class="product-card__tag">{{ product.tag }}</span>
+          }
+          <div class="product-card__art" aria-hidden="true">{{ product.emoji }}</div>
+          <h3 class="product-card__name">{{ product.name }}</h3>
+          <p class="product-card__unit">Por {{ product.unit }}</p>
+          <div class="product-card__footer">
+            <span class="product-card__price">
+              <small>S/</small>{{ product.price.toFixed(2) }}
+            </span>
+            <button
+              type="button"
+              class="product-card__add"
+              (click)="addToCart(product)"
+              [attr.aria-label]="'Agregar ' + product.name + ' al carrito'"
+            >
+              +
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section id="checkout" class="checkout">
+    <div class="checkout__intro">
+      <span class="checkout__eyebrow">Actividad dApps · Blockchain</span>
+      <h2>Finaliza tu compra con tu billetera</h2>
+      <p>
+        Este panel es la parte "Web3" de la tienda: conecta Pali Wallet, revisa tu
+        dirección y tu saldo, y cambia entre las testnets Ethereum Sepolia y Ethereum
+        Hoodi para probar la dApp.
+      </p>
+
+      @if (cartLines().length > 0) {
+        <div class="checkout__summary">
+          <h3>Tu canasta</h3>
+          <ul class="checkout__lines">
+            @for (line of cartLines(); track line.product.id) {
+              <li>
+                <span>{{ line.product.emoji }} {{ line.product.name }} × {{ line.qty }}</span>
+                <span class="checkout__line-price">
+                  S/ {{ (line.product.price * line.qty).toFixed(2) }}
+                </span>
+                <button
+                  type="button"
+                  class="checkout__remove"
+                  (click)="removeFromCart(line.product.id)"
+                  aria-label="Quitar una unidad"
+                >
+                  −
+                </button>
+              </li>
+            }
+          </ul>
+          <div class="checkout__total">
+            <span>Total</span>
+            <strong>S/ {{ cartTotal().toFixed(2) }}</strong>
+          </div>
+        </div>
+      } @else {
+        <p class="checkout__empty">Tu canasta está vacía. Agrega productos desde el catálogo.</p>
+      }
+    </div>
+
+    <div class="checkout__wallet">
+      <app-wallet-connect></app-wallet-connect>
+      <app-wallet-dashboard></app-wallet-dashboard>
+    </div>
+  </section>
+</div>

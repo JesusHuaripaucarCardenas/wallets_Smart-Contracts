@@ -1,0 +1,24 @@
+.app-alert {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-block: 0.75rem;
+
+  &--error {
+    background: #fdecea;
+    color: #b3261e;
+    border: 1px solid #f6c6c2;
+  }
+
+  &--success {
+    background: #e7f6ec;
+    color: var(--color-primary-dark, #1e7a3a);
+    border: 1px solid #bfe6cb;
+  }
+
+  &--info {
+    background: var(--color-accent-soft, #eef3fb);
+    color: var(--color-accent, #2b4c7e);
+    border: 1px solid #d9c9ec;
+  }
+}

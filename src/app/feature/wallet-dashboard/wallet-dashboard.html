@@ -1,0 +1,27 @@
+@if (isConnected()) {
+  <section class="wallet-dashboard">
+    <h2>Cuenta conectada</h2>
+
+    <dl class="wallet-dashboard__list">
+      <dt>Address</dt>
+      <dd title="{{ account().address }}">{{ account().address | shortAddress: 6 }}</dd>
+
+      <dt>Saldo</dt>
+      <dd>{{ account().balanceEth }} ETH</dd>
+
+      <dt>Red</dt>
+      <dd>{{ account().networkName }}</dd>
+    </dl>
+
+    <app-button
+      label="Actualizar saldo"
+      variant="secondary"
+      [loading]="isLoading()"
+      (clicked)="refreshBalance()"
+    ></app-button>
+  </section>
+} @else {
+  <section class="wallet-dashboard wallet-dashboard--empty">
+    <p>Conéctate con Pali Wallet para ver el address y el saldo de tu cuenta.</p>
+  </section>
+}

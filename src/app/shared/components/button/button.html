@@ -1,0 +1,11 @@
+<button
+  type="button"
+  class="app-button app-button--{{ variant }}"
+  [disabled]="disabled || loading"
+  (click)="onClick()"
+>
+  @if (loading) {
+    <span class="app-button__spinner" aria-hidden="true"></span>
+  }
+  <span>{{ label }}</span>
+</button>
