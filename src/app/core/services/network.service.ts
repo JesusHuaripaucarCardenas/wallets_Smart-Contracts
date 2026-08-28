@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { NetworkConfig } from '../interfaces';
 
+/**
+ * Catálogo de redes soportadas por la dApp.
+ * Se usan para poder agregarlas/cambiarlas automáticamente en Pali Wallet
+ * mediante los métodos RPC wallet_addEthereumChain / wallet_switchEthereumChain.
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -43,6 +48,7 @@ export class NetworkService {
     return this.getAll().find((n) => n.chainIdHex.toLowerCase() === normalized);
   }
 
+  /** Payload requerido por wallet_addEthereumChain (EIP-3085). */
   toAddChainParams(network: NetworkConfig) {
     return {
       chainId: network.chainIdHex,

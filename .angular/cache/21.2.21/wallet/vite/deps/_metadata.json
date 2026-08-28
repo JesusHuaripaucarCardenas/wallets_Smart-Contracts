@@ -1,0 +1,43 @@
+{
+  "hash": "4544e146",
+  "configHash": "a18b3bde",
+  "lockfileHash": "b40b8d4f",
+  "browserHash": "a7e0f585",
+  "optimized": {
+    "@angular/core": {
+      "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "613662e8",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "eb53c133",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "26772486",
+      "needsInterop": false
+    },
+    "ethers": {
+      "src": "../../../../../../node_modules/ethers/lib.esm/index.js",
+      "file": "ethers.js",
+      "fileHash": "1f5ba9d7",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-AYFTERW6": {
+      "file": "chunk-AYFTERW6.js"
+    },
+    "chunk-J2WGEJTE": {
+      "file": "chunk-J2WGEJTE.js"
+    },
+    "chunk-653SOEEV": {
+      "file": "chunk-653SOEEV.js"
+    }
+  }
+}

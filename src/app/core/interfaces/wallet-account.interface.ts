@@ -1,3 +1,7 @@
+/**
+ * Estado de la sesión de la wallet conectada (Pali Wallet u otra
+ * wallet compatible con EIP-1193) dentro de la aplicación.
+ */
 export interface WalletAccount {
   address: string | null;
   balanceWei: string | null;

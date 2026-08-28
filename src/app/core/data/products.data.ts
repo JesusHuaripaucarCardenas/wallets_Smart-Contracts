@@ -1,3 +1,8 @@
+/**
+ * Catálogo estático del supermercado de demostración.
+ * No hay backend: los productos, precios y stock son datos fijos que
+ * solo sirven para dar contexto visual a la actividad de dApps.
+ */
 export interface Product {
   id: string;
   name: string;
